@@ -1,8 +1,8 @@
 import uvicorn
-from core.models.db_helper import db_helper
+from db.db_helper import db_helper
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
-from core.config import settings
+from db.config import settings
 
 
 @asynccontextmanager
