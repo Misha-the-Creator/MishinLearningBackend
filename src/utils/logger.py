@@ -10,7 +10,7 @@ class Logger(metaclass=Singleton):
         return self.logger
 
 logger = Logger(
-    level=logging.INFO,
+    level=logging.DEBUG,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[logging.FileHandler("backend.log"), logging.StreamHandler()]
 ).get_logger()
