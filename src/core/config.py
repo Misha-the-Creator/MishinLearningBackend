@@ -1,7 +1,7 @@
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import BaseModel, PostgresDsn
 
-class RunCongif(BaseModel):
+class RunConfig(BaseModel):
     host: str = '0.0.0.0'
     port: int = 8080
     reload: bool = True
@@ -10,13 +10,22 @@ class ApiPrefix(BaseModel):
     prefix: str = '/api'
 
 class DatabaseConfig(BaseModel):
-    url: PostgresDsn
+    engine: str
+    user: str
+    password: str
+    port: int
     echo: bool = False 
     pool_size: int = 25
 
+    def create_url(self):
+        return f'postgresql+{self.engine}://{self.user}:{self.password}@localhost:{self.port}'
+
 class Setting(BaseSettings):
-    run: RunCongif = RunCongif()
+    model_config = SettingsConfigDict(env_file='.env', 
+                                      env_nested_delimiter='__', 
+                                      case_sensitive=False)
+    run: RunConfig = RunConfig()
     api: ApiPrefix = ApiPrefix()
-    db: DatabaseConfig = DatabaseConfig() 
+    db: DatabaseConfig
 
 settings = Setting()
