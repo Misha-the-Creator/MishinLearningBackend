@@ -20,6 +20,6 @@ class DBHelper:
         async with self.session_factory() as session:
             yield session
 
-db_helper = DBHelper(url=str(settings.db.url),
+db_helper = DBHelper(url=str(settings.db.create_url()),
                      echo=settings.db.echo,
                      pool_size=settings.db.pool_size)
