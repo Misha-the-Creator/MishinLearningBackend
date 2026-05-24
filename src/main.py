@@ -3,6 +3,7 @@ from db.db_helper import db_helper
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from db.config import settings
+from api.website import website_router
 
 
 @asynccontextmanager
@@ -15,6 +16,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
+app.include_router(website_router)
 
 def main():
     print("Hello from ml-back!")
