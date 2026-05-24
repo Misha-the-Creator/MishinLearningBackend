@@ -1,8 +1,20 @@
 import uvicorn
+from core.models.db_helper import db_helper
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from core.config import settings
 
-app = FastAPI()
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # app startup
+    yield
+    # app shutdown
+    print('Шатдаун')
+    await db_helper.dispose()
+
+
+app = FastAPI(lifespan=lifespan)
 
 def main():
     print("Hello from ml-back!")
