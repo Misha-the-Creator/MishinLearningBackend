@@ -1,5 +1,5 @@
+from pydantic import BaseModel
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from pydantic import BaseModel, PostgresDsn
 
 class RunConfig(BaseModel):
     host: str = '0.0.0.0'
