@@ -1,8 +1,8 @@
 """Creating tables for articles and images
 
-Revision ID: 868c49389155
+Revision ID: bd021304033d
 Revises:
-Create Date: 2026-05-24 17:32:57.972066
+Create Date: 2026-05-24 17:43:27.868696
 
 """
 
@@ -12,7 +12,7 @@ from alembic import op
 import sqlalchemy as sa
 
 # revision identifiers, used by Alembic.
-revision: str = "868c49389155"
+revision: str = "bd021304033d"
 down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
